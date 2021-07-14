@@ -1,0 +1,10 @@
+{
+  "description": "Workspace Title allow you to give an identifiable name to your workspaces when displayed in the overview panel", 
+  "name": "Workspace Titles", 
+  "shell-version": [
+    "3.28.4"
+  ], 
+  "url": "https://github.com/ben8p/gnome-extension-workspace-titles", 
+  "uuid": "workspace_titles@ben.santalucia.me", 
+  "version": 1
+}

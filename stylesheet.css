@@ -1,0 +1,9 @@
+
+.workspace-title {
+    font-size: 10em;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(10,10,10,0.9);
+    padding-left: 1em;
+    padding-right: 1em;
+}
