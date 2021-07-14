@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+
+  <schema id="org.gnome.shell.extensions.workspace_titles"
+    path="/org/gnome/shell/extensions/workspace_titles/">
+
+    <key type="as" name="titles">
+      <default>[]</default>
+      <summary>titles of thumbnails</summary>
+      <description>titles of thumbnails</description>
+    </key>
+
+  </schema>
+
+</schemalist>
