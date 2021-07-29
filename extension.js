@@ -21,8 +21,19 @@ class WorkspaceTitle {
 		return new Gio.Settings({ settings_schema: schemaObj });
 	}
 
+	getThumbnails() {
+		const overview = Main.overview;
+		if (overview._controls && overview._controls._thumbnailsBox && overview._controls._thumbnailsBox._thumbnails) {
+			return overview._controls._thumbnailsBox._thumbnails;
+		}
+		if (overview._overview && overview._overview._controls && overview._overview._controls._thumbnailsBox && overview._overview._controls._thumbnailsBox._thumbnails) {
+			return overview._overview._controls._thumbnailsBox._thumbnails;
+		}
+		throw new Error('Could not find thumbnails, please raise a bug');
+	}
+
 	_hideTitles() {
-		const thumbnails = Main.overview._controls._thumbnailsBox._thumbnails;
+		const thumbnails = this.getThumbnails();
 		const settings = this._getSettings();
 		const titles = settings.get_strv('titles');
 		for (let i = 0; i < thumbnails.length; i++) {
@@ -37,7 +48,7 @@ class WorkspaceTitle {
 
 	_showTitles() {
 		const monitor = Main.layoutManager.primaryMonitor;
-		const thumbnails = Main.overview._controls._thumbnailsBox._thumbnails;
+		const thumbnails = this.getThumbnails();
 		const settings = this._getSettings();
 		const titles = settings.get_strv('titles');
 		for (let i = 0; i < thumbnails.length; i++) {
