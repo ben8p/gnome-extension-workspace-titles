@@ -23,11 +23,11 @@ class WorkspaceTitle {
 
 	getThumbnails() {
 		const overview = Main.overview;
-		if (overview._controls && overview._controls._thumbnailsBox && overview._controls._thumbnailsBox._thumbnails) {
-			return overview._controls._thumbnailsBox._thumbnails;
-		}
-		if (overview._overview && overview._overview._controls && overview._overview._controls._thumbnailsBox && overview._overview._controls._thumbnailsBox._thumbnails) {
+		if (overview._overview._controls && overview._overview._controls._thumbnailsBox && overview._overview._controls._thumbnailsBox._thumbnails) {
 			return overview._overview._controls._thumbnailsBox._thumbnails;
+		}
+		if (overview._overview && overview._overview._overview._controls && overview._overview._overview._controls._thumbnailsBox && overview._overview._overview._controls._thumbnailsBox._thumbnails) {
+			return overview._overview._overview._controls._thumbnailsBox._thumbnails;
 		}
 		throw new Error('Could not find thumbnails, please raise a bug');
 	}
