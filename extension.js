@@ -21,19 +21,36 @@ class WorkspaceTitle {
 		return new Gio.Settings({ settings_schema: schemaObj });
 	}
 
-	getThumbnails() {
-		const overview = Main.overview;
-		if (overview._controls && overview._controls._thumbnailsBox && overview._controls._thumbnailsBox._thumbnails) {
-			return overview._controls._thumbnailsBox._thumbnails;
+	_getThumbnails() {
+		const possiblePath = [
+			'Main.overview._overview._overview._controls._thumbnailsBox._thumbnails',
+			'Main.overview._overview._controls._thumbnailsBox._thumbnails',
+			'Main.overview._controls._thumbnailsBox._thumbnails',
+		];
+
+		for(let i = 0; i < possiblePath.length; i++) {
+			const currentPath = possiblePath[i];
+			const segments = currentPath.split('.');
+			segments.shift(); // remove `Main` because we always start from there
+			let root = Main;
+			for(let j = 0; j < segments.length; j++) {
+				const segment = segments[j];
+				if(segment in root) {
+					root = root[segment];
+					if(j === segments.length - 1) {
+						return root;
+					}
+				} else {
+					break;
+				}
+			}
 		}
-		if (overview._overview && overview._overview._controls && overview._overview._controls._thumbnailsBox && overview._overview._controls._thumbnailsBox._thumbnails) {
-			return overview._overview._controls._thumbnailsBox._thumbnails;
-		}
+		
 		throw new Error('Could not find thumbnails, please raise a bug');
 	}
 
 	_hideTitles() {
-		const thumbnails = this.getThumbnails();
+		const thumbnails = this._getThumbnails();
 		const settings = this._getSettings();
 		const titles = settings.get_strv('titles');
 		for (let i = 0; i < thumbnails.length; i++) {
@@ -48,7 +65,7 @@ class WorkspaceTitle {
 
 	_showTitles() {
 		const monitor = Main.layoutManager.primaryMonitor;
-		const thumbnails = this.getThumbnails();
+		const thumbnails = this._getThumbnails();
 		const settings = this._getSettings();
 		const titles = settings.get_strv('titles');
 		for (let i = 0; i < thumbnails.length; i++) {

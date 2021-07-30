@@ -3,9 +3,11 @@
   "name": "Workspace Titles", 
   "shell-version": [
     "3.28",
-    "3.36"
+    "3.28.2",
+    "3.36",
+    "3.36.8"
   ], 
   "url": "https://github.com/ben8p/gnome-extension-workspace-titles", 
   "uuid": "workspace_titles@ben.santalucia.me", 
-  "version": 3
+  "version": 4
 }
